@@ -1,6 +1,6 @@
 # War Game Cards 🃏
 
-A two-player iOS card game built with UIKit and Storyboard as a class assignment at Afeka College of Engineering.
+A two-player iOS card game built with UIKit and Storyboard
 
 ## About the Game
 
