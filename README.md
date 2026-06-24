@@ -33,6 +33,14 @@ If both players draw cards of equal value, the real War Game rules apply:
 - The 4th card is revealed and compared
 - If another tie occurs, the war repeats
 
+## Sound & Music
+
+The app includes full audio support:
+- 🎵 Background music — plays from the Welcome screen through the entire game, pauses when the app goes to background and resumes on return
+- 🃏 Card flip sound — plays every time cards are revealed each round
+- ⚔️ War sound — plays when the 3 face-down war cards animate
+- 🏆 Victory sound — plays when the result screen appears, replacing the background music
+
 ## Watch the App in Action
 
 ▶️ **Demo video:** [Click here to watch the video](https://youtu.be/K8ZYcBrBw_0)
