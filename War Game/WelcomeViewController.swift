@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import AVFoundation
 
 class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -17,6 +18,12 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     private let game = GameModel()
     private var playerName: String = ""
     private var playerSide: String = ""
+    
+    // MARK: – Audio
+    // Background music starts here and is passed to GameViewController
+    private var backgroundMusicPlayer: AVAudioPlayer?
+    // True only when we hand the player to GameViewController
+    private var didHandOffPlayer: Bool = false
 
     // MARK: – Lifecycle
     override func viewDidLoad() {
@@ -25,10 +32,29 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
         startButton.isEnabled = false
 
         setupLocation()
+        startBackgroundMusic()
         // checkSavedName()
-    }
-
-    // MARK: – Name handling
+    
+    
+        // Pause music when user goes to home screen
+        NotificationCenter.default.addObserver(self,
+           selector: #selector(appDidEnterBackground),
+           name: UIApplication.didEnterBackgroundNotification,
+           object: nil)
+       
+        // Resume music when user comes back to the app
+        NotificationCenter.default.addObserver(self,
+           selector: #selector(appDidBecomeActive),
+           name: UIApplication.didBecomeActiveNotification,
+           object: nil)
+        
+        // Restart music when returning from result screen via "Back to Menu"
+             NotificationCenter.default.addObserver(self,
+                 selector: #selector(handleBackToMenu),
+                 name: .backToMenu,
+                 object: nil)
+         }
+    
     private func checkSavedName() {
         if let saved = UserDefaults.standard.string(forKey: "playerName"), !saved.isEmpty {
             playerName = saved
@@ -37,7 +63,52 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             evaluateStart()
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Only pause music if we did NOT hand it off to GameViewController
+        if !didHandOffPlayer {
+            backgroundMusicPlayer?.pause()
+        }
+        didHandOffPlayer = false
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
+   // MARK: – Background / foreground handling
+   @objc private func appDidEnterBackground() {
+       backgroundMusicPlayer?.pause()
+   }
+
+   @objc private func appDidBecomeActive() {
+       // Only resume if the player exists and is paused
+       if let player = backgroundMusicPlayer, !player.isPlaying {
+           player.play()
+       }
+   }
+    
+    // Called when "Back to Menu" is tapped on the result screen
+        @objc private func handleBackToMenu() {
+            startBackgroundMusic()
+        }
+    
+    // MARK: – Audio
+    private func startBackgroundMusic() {
+        // Already playing — don't restart
+        if backgroundMusicPlayer?.isPlaying == true { return }
+        guard let url = Bundle.main.url(forResource: "background_music_game", withExtension: "mp3") else {
+            print("⚠️ background_music_game.m4a not found")
+            return
+    }
+      backgroundMusicPlayer = try? AVAudioPlayer(contentsOf: url)
+      backgroundMusicPlayer?.numberOfLoops = -1  // loop forever
+      backgroundMusicPlayer?.volume = 0.3
+      backgroundMusicPlayer?.play()
+   }
+   
+    // MARK: – Name handling
     @IBAction func nameButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Enter your name", message: nil, preferredStyle: .alert)
         alert.addTextField { tf in
@@ -105,6 +176,11 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             game.playerSide = playerSide
             game.resetGame()
             vc.game = game
+            // Hand off the player so music continues into game screen
+            vc.backgroundMusicPlayer = backgroundMusicPlayer
+            backgroundMusicPlayer = nil
+            // Mark that we handed off — so viewWillDisappear doesn't pause it
+            didHandOffPlayer = true
         }
     }
 }

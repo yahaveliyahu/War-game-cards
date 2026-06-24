@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D1CA2B992FEBCB60001B691C /* card_flip_war.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D1CA2B982FEBCB60001B691C /* card_flip_war.m4a */; };
+		D1CA2B9B2FEBCB6D001B691C /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1CA2B9A2FEBCB6D001B691C /* game_over.mp3 */; };
+		D1CA2B9D2FEBCB78001B691C /* card_flip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1CA2B9C2FEBCB78001B691C /* card_flip.mp3 */; };
+		D1CA2BA12FEC0092001B691C /* background_music_game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1CA2BA02FEC0092001B691C /* background_music_game.mp3 */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D1425ECD2FD80CD600806429 /* War Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "War Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19579EB2FDFF6C1004315B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "War Game/AppDelegate.swift"; sourceTree = "<group>"; };
@@ -15,6 +22,10 @@
 		D19579EF2FDFF714004315B8 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultViewController.swift; path = "War Game/ResultViewController.swift"; sourceTree = "<group>"; };
 		D19579F02FDFF753004315B8 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameModel.swift; path = "War Game/GameModel.swift"; sourceTree = "<group>"; };
 		D19579F12FDFF760004315B8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "War Game/Card.swift"; sourceTree = "<group>"; };
+		D1CA2B982FEBCB60001B691C /* card_flip_war.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = card_flip_war.m4a; sourceTree = "<group>"; };
+		D1CA2B9A2FEBCB6D001B691C /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_over.mp3; sourceTree = "<group>"; };
+		D1CA2B9C2FEBCB78001B691C /* card_flip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = card_flip.mp3; sourceTree = "<group>"; };
+		D1CA2BA02FEC0092001B691C /* background_music_game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music_game.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -61,6 +72,10 @@
 				D19579EB2FDFF6C1004315B8 /* AppDelegate.swift */,
 				D1425ECF2FD80CD600806429 /* War Game */,
 				D1425ECE2FD80CD600806429 /* Products */,
+				D1CA2B982FEBCB60001B691C /* card_flip_war.m4a */,
+				D1CA2B9A2FEBCB6D001B691C /* game_over.mp3 */,
+				D1CA2B9C2FEBCB78001B691C /* card_flip.mp3 */,
+				D1CA2BA02FEC0092001B691C /* background_music_game.mp3 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +151,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1CA2BA12FEC0092001B691C /* background_music_game.mp3 in Resources */,
+				D1CA2B9D2FEBCB78001B691C /* card_flip.mp3 in Resources */,
+				D1CA2B9B2FEBCB6D001B691C /* game_over.mp3 in Resources */,
+				D1CA2B992FEBCB60001B691C /* card_flip_war.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
